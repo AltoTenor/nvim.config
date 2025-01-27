@@ -22,8 +22,7 @@ vim.keymap.set('n', '<leader>wq', ':wq<CR>')  -- Quit with Save
 vim.keymap.set('n', '<leader>fg', ':Telescope live_grep<CR>', { desc = 'Search Text in Files' })
 vim.keymap.set('n', '<leader>ff', ':Telescope find_files<CR>', { desc = 'Search Files' })
 vim.keymap.set('n', '<leader>fgf', ':Telescope git_files<CR>', { desc = 'Search Git Files' })
-
-
+vim.keymap.set('n', '<leader>fgs', ':Telescope git_status<CR>', { desc = 'Git Status' })
 
 -- Load plugins (using a plugin manager like packer.nvim)
 require('plugins')

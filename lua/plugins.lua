@@ -31,6 +31,17 @@ return {
       }
     end,
   },
+  -- ToggleTerm for Terminal
+    {
+        "akinsho/toggleterm.nvim",  -- Plugin name and repository
+        config = function()         -- Configuring the plugin using a Lua function
+        require("toggleterm").setup{  -- Calling the setup function to configure the plugin
+            size = 20,  -- Set the default terminal size (in lines)
+            open_mapping = [[<c-t>]],  -- Keybinding to open the terminal (Ctrl + \)
+            direction = "horizontal",  -- Open the terminal in a floating window
+        }
+        end,
+    },
 
   -- Lualine for a status line
   {
