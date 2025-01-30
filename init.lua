@@ -13,7 +13,8 @@ vim.opt.tabstop = 4          -- Number of spaces per tab
 vim.opt.shiftwidth = 4       -- Spaces per autoindent
 vim.opt.expandtab = true     -- Convert tabs to spaces
 vim.opt.encoding = "utf-8"
-vim.opt.fileencoding = "utf-8"
+vim.opt.termguicolors = true
+vim.cmd[[colorscheme gruvbox]]
 
 -- Key mappings
 vim.keymap.set('n', '<leader>w', ':w<CR>')  -- Save 
