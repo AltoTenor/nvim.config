@@ -10,6 +10,7 @@ return {
       require("nvim-treesitter.configs").setup {
         ensure_installed = { "lua", "python", "javascript" }, -- Specify languages
         highlight = { enable = true },
+        indent = true,
       }
     end,
   },
@@ -31,17 +32,36 @@ return {
       }
     end,
   },
-  -- ToggleTerm for Terminal
-    {
-        "akinsho/toggleterm.nvim",  -- Plugin name and repository
-        config = function()         -- Configuring the plugin using a Lua function
-        require("toggleterm").setup{  -- Calling the setup function to configure the plugin
-            size = 20,  -- Set the default terminal size (in lines)
-            open_mapping = [[<c-t>]],  -- Keybinding to open the terminal (Ctrl + \)
-            direction = "horizontal",  -- Open the terminal in a floating window
-        }
-        end,
+  -- Commenting -- 
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      pre_hook = function(ctx) -- Optional context-aware hook
+        if vim.bo.filetype == 'typescriptreact' then
+          return require('ts_context_commentstring.internal').calculate_commentstring()
+        end
+   end
     },
+    lazy = false
+  },
+  -- Tree Directory Plugin -- 
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("nvim-tree").setup {}
+    end,
+  },
+  {
+    'NMAC427/guess-indent.nvim',
+    opts = {
+      override_editorconfig = false,
+      filetype_exclude = { 'netrw', 'tutor' }
+    }
+  },
 
   -- Lualine for a status line
   {
@@ -49,13 +69,43 @@ return {
     dependencies = { "kyazdani42/nvim-web-devicons" },
     config = function()
       require("lualine").setup {
-        options = { theme = "gruvbox" },
+        options = { theme = "tokyodark" },
       }
     end,
   },
 
-  -- Gruvbox color scheme
-  { "morhetz/gruvbox" },
+  -- color scheme
+  {
+    "tiagovla/tokyodark.nvim",
+    -- opts = {
+        -- custom options here
+    -- },
+    config = function(_, opts)
+        require("tokyodark").setup(opts) -- calling setup is optional
+    end,
+  },
+  { 'rose-pine/neovim', 
+    config = function()
+        require("rose-pine").setup {
+            variant = "auto", -- auto, main, moon, or dawn
+            dark_variant = "main", -- main, moon, or dawn
+            dim_inactive_windows = false,
+            extend_background_behind_borders = true,
+
+            enable = {
+                terminal = true,
+                legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
+                migrations = true, -- Handle deprecated options automatically
+            },
+
+            styles = {
+                bold = true,
+                italic = true,
+                transparency = false,
+            },
+        }
+    end,
+  },
 
   -- Auto pairs for brackets
   {
