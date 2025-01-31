@@ -1,3 +1,4 @@
+### Bash Script to Run to Setup
 ```
 apt update
 export DEBIAN_FRONTEND=noninteractive
@@ -11,7 +12,10 @@ rm -rf nvim.config/
 cd .config/nvim
 git clone https://github.com/folke/lazy.nvim ~/.local/share/nvim/lazy/lazy.nvim
 ```
-### Docker file
+<!-- cd $(find ~ -type d -name "markdown-preview.nvim") -->
+<!-- npm i -->
+<!-- cd ~ -->
+#### Docker file
 ```
 FROM ubuntu:latest
 
@@ -41,7 +45,7 @@ ENV EDITOR=nvim
 CMD ["nvim"]
 
 ```
-To run 
+#### To run the docker container 
 ```
   docker run -it --rm \
   --env DISPLAY=$DISPLAY \

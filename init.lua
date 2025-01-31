@@ -18,6 +18,17 @@ vim.opt.shiftwidth = 4       -- Spaces per autoindent
 vim.opt.expandtab = true     -- Convert tabs to spaces
 vim.opt.encoding = "utf-8"
 vim.opt.termguicolors = true
+-- Diagnostic 
+vim.diagnostic.config({
+  underline = true,
+  signs = true,
+  virtual_text = true,
+  float = {
+    -- options for floating windows
+  },
+  update_in_insert = false,
+  severity_sort = false,
+})
 
 -- Key mappings
 vim.keymap.set('n', '<leader>w', ':w<CR>')  -- Save 
