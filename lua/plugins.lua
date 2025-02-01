@@ -14,8 +14,9 @@ return {
       }
     end,
   },
+  
   -- Markdown Preview 
- {
+  {
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
@@ -130,6 +131,22 @@ return {
     },
     lazy = false
   },
+  -- Folding Plugin 
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = { "kevinhwang91/promise-async", "nvim-treesitter/nvim-treesitter" },
+    config = function()
+      require("ufo").setup({
+        provider_selector = function(bufnr, filetype, buftype)
+          return { "treesitter", "indent" }  -- Fold based on brackets & indentation
+        end,
+      })
+
+      -- Keymaps for folding
+      vim.keymap.set("n", "zR", require("ufo").openAllFolds)
+      vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
+    end,
+  },
   -- Tree Directory Plugin -- 
   {
     "nvim-tree/nvim-tree.lua",
@@ -141,6 +158,7 @@ return {
       require("nvim-tree").setup {}
     end,
   },
+  -- Plugin for indentation 
   {
     'NMAC427/guess-indent.nvim',
     opts = {

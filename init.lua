@@ -3,6 +3,8 @@ vim.g.mapleader = " "
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.o.foldlevel = 99
+vim.o.foldlevelstart = 99
 
 vim.opt.rtp:prepend("~/.local/share/nvim/lazy/lazy.nvim")
 
@@ -30,6 +32,7 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 
+
 -- Key mappings
 vim.keymap.set('n', '<leader>w', ':w<CR>')  -- Save 
 vim.keymap.set('n', '<leader>q', ':q<CR>')  -- Quit 
@@ -43,10 +46,13 @@ vim.keymap.set('n', '<C-t>', ':NvimTreeOpen<CR>', { desc = 'Git Status' })
 -- Keymaps for easier indentation
 vim.keymap.set('v', '<Tab>', '>gv', { desc = 'Indent selection' })
 vim.keymap.set('v', '<S-Tab>', '<gv', { desc = 'Unindent selection' })
+-- Switching between tabs in Tree
+vim.keymap.set('n', '<C-Tab>', 'gt', { noremap = true, silent = true })       -- Next tab
+-- For adding comments 
 vim.keymap.set('x', '<leader>c', '<Plug>(comment_toggle_linewise_visual)', { desc = 'Comment selection' })
 vim.keymap.set('n', '<leader>c', '<Plug>(comment_toggle_linewise_current)', { desc = 'Comment line' })
 
--- Load plugins (using a plugin manager like packer.nvim)
+-- Load plugins (using a plugin manager like lazy.nvim)
 require('plugins')
 
 vim.cmd('colorscheme rose-pine')  -- This will set the colorscheme to rosepine
